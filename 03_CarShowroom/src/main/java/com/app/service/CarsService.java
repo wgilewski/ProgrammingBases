@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 public class CarsService
 {
-    private final Cars carsClass = new Cars(new HashSet<>(Arrays.asList("AUDI.json","BMW.json","MERCEDES.json","BENTLEY.json")));
+    private final Cars carsClass = new Cars(GenerateData.getGeneratedData());
     private List<Car> cars = new ArrayList<>(carsClass.getCars());
 
     List<Car> sortCars(int choice, boolean descending)

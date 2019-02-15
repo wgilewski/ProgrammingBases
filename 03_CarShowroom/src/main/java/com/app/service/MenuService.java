@@ -19,91 +19,99 @@ public class MenuService {
 
     public void mainMenu()
     {
-        try {
 
-            while (true) {
-                System.out.println("\n<----Menu---->");
-                System.out.println("1. Sort cars by");
-                System.out.println("2. Find car from price range and body color");
-                System.out.println("3. Sorted cars with engine type ");
-                System.out.println("4. Car statistics");
-                System.out.println("5. Cars mileage map");
-                System.out.println("6. Cars with tyre type");
-                System.out.println("7. Cars with equipment");
-                System.out.println("8. Add new car");
-                System.out.println("9. Back to original car list");
-                System.out.println("10. Show all cars");
-                System.out.println("11. Close\n");
-                int a = UserDataService.getInt("Please enter menu number : ");
-                switch (a)
-                {
-                    case 1:
-                        List<Car> sortedCars = sortedCars();
-                        sortedCars.stream().forEach(System.out::println);
-                        break;
+        while (true)
+        {
+            try
+            {
+                 System.out.println("\n<----Menu---->");
+                 System.out.println("1. Sort cars by");
+                 System.out.println("2. Find car from price range and body color");
+                 System.out.println("3. Sorted cars with engine type ");
+                 System.out.println("4. Car statistics");
+                 System.out.println("5. Cars mileage map");
+                 System.out.println("6. Cars with tyre type");
+                 System.out.println("7. Cars with equipment");
+                 System.out.println("8. Add new car");
+                 System.out.println("9. Back to original car list");
+                 System.out.println("10. Show all cars");
+                 System.out.println("11. Close\n");
+                 int a = UserDataService.getInt("Please enter menu number : ");
 
-
-                    case 2:
-                        List<Car> priceRangeAndBodyColor = priceRangeAndBodyColor();
-                        priceRangeAndBodyColor.stream().forEach(System.out::println);
-                        break;
+                 if (a < 1 || a > 11)
+                 {
+                     System.err.println("PLEASE INSERT NUMBER FROM MENU");
+                 }
 
 
-                    case 3:
-                        List<Car> sortedCarsWithEngineType = sortedCarsWithEngineType();
-                        sortedCarsWithEngineType.stream().forEach(System.out::println);
-                        break;
+                 switch (a)
+                 {
+                     case 1:
+                         List<Car> sortedCars = sortedCars();
+                         sortedCars.stream().forEach(System.out::println);
+                         break;
 
 
-                    case 4:
-                        statistics();
-                        break;
+                     case 2:
+                         List<Car> priceRangeAndBodyColor = priceRangeAndBodyColor();
+                         priceRangeAndBodyColor.stream().forEach(System.out::println);
+                         break;
 
 
-                    case 5:
-                        Map<Car,Integer> carIntegerMap = carsService.carMileageMap();
-                        carIntegerMap.entrySet().forEach(System.out::println);
-                        break;
+                     case 3:
+                         List<Car> sortedCarsWithEngineType = sortedCarsWithEngineType();
+                         sortedCarsWithEngineType.stream().forEach(System.out::println);
+                         break;
 
 
-                    case 6:
-                        Map<TyreType, List<Car>> tyreTypeListMap = carsService.carsWithTyreType();
-                        tyreTypeListMap.entrySet().stream().forEach(System.out::println);
-                        break;
+                     case 4:
+                         statistics();
+                         break;
 
 
-                    case 7:
-                        List<Car> carsWithComponents = carsWithComponents();
-                        carsWithComponents.stream().forEach(System.out::println);
-                        break;
+                     case 5:
+                         Map<Car,Integer> carIntegerMap = carsService.carMileageMap();
+                         carIntegerMap.entrySet().forEach(System.out::println);
+                         break;
 
 
-                    case 8:
-                        newCar();
-                        break;
+                     case 6:
+                         Map<TyreType, List<Car>> tyreTypeListMap = carsService.carsWithTyreType();
+                         tyreTypeListMap.entrySet().stream().forEach(System.out::println);
+                         break;
 
 
-                    case 9:
-                        carsService.backToOriginalCarList();
-                        break;
+                     case 7:
+                         List<Car> carsWithComponents = carsWithComponents();
+                         carsWithComponents.stream().forEach(System.out::println);
+                         break;
 
 
-                    case 10:
-                        carsService.showAllCars();
-                        break;
+                     case 8:
+                         newCar();
+                         break;
 
 
-                    case 11:
-                        UserDataService.close();
-                        return;
-                }
+                     case 9:
+                         carsService.backToOriginalCarList();
+                         break;
+
+
+                     case 10:
+                         carsService.showAllCars();
+                         break;
+
+
+                     case 11:
+                         UserDataService.close();
+                         return;
+                 }
+
+            }catch (MyException e)
+            {
+                System.out.println(e.getExceptionMessage());
             }
-
-        } catch (MyException e) {
-            System.out.println(e.getExceptionMessage());
         }
-
-
     }
 
     public List<Car> carsWithComponents()
@@ -139,6 +147,10 @@ public class MenuService {
             System.out.println("2. Engine power statistics");
             System.out.println("3. Mileage statistics");
             menu4 = UserDataService.getInt("\nPlease enter menu number : ");
+            if (menu4 < 1 || menu4 > 3)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
         }while (!Arrays.asList(1,2,3).contains(menu4));
 
         carsService.statistics(menu4);
@@ -152,6 +164,10 @@ public class MenuService {
             System.out.println("2. Gasoline");
             System.out.println("3. LPG\n");
             engineType = UserDataService.getInt("Please enter menu number : ");
+            if (engineType < 1 || engineType > 3)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
         } while (!Arrays.asList(1, 2, 3).contains(engineType));
 
         EngineType[] engineTypes = EngineType.values();
@@ -170,12 +186,20 @@ public class MenuService {
             System.out.println("5. Blue");
             System.out.println("6. Green\n");
             color = UserDataService.getInt("Please enter menu number : ");
+            if (color < 1 || color > 6)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
         } while (!Arrays.asList(1, 2, 3, 4, 5, 6).contains(color));
         int min;
         int max;
         do {
             min = UserDataService.getInt("\nPlease enter min price : " );
             max = UserDataService.getInt("\nPlease enter max price : " );
+            if (min >= max)
+            {
+                System.err.println("MIN VALUE SHOULD BE GREATER THAN MAX VALUE");
+            }
         } while (min >= max || min <= 0);
         return carsService.findByCarBodyAndPriceRange(carBodyColors[color - 1], min, max);
     }
@@ -188,6 +212,10 @@ public class MenuService {
             System.out.println("2. Sort by wheel size");
             System.out.println("3. Sort by engine power\n");
             menu1 = UserDataService.getInt("\nPlease enter menu number : ");
+            if (menu1 < 1 || menu1 > 3)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
         }while (!Arrays.asList(1,2,3).contains(menu1));
 
         int menu2;
@@ -195,6 +223,11 @@ public class MenuService {
             System.out.println("1. Sort ascending");
             System.out.println("2. Sort descending\n");
             menu2 = UserDataService.getInt("\nPlease enter menu number : ");
+
+            if (menu2 < 1 || menu2 > 2)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
         }while (!Arrays.asList(1,2).contains(menu2));
 
         if (menu2 == 1)
@@ -294,8 +327,13 @@ public class MenuService {
             System.out.println("\n<----Engine Menu---->");
             System.out.println("1. Engine Type");
             System.out.println("2. Engine Power");
-            System.out.println("3. Close");
+            System.out.println("3. Back Car Menu");
             a = UserDataService.getInt("\nPlease enter menu number : ");
+
+            if (a < 1 || a > 3)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
 
             switch (a)
             {
@@ -309,6 +347,12 @@ public class MenuService {
                         System.out.println("2. Gasoline");
                         System.out.println("3. Lpg");
                         engine = UserDataService.getInt("\nPlease enter menu number : ");
+
+                        if (engine > 1 || engine < 3)
+                        {
+                            System.err.println("PLEASE INSERT NUMBER FROM MENU");
+                        }
+
                     }while (!Arrays.asList(1,2,3).contains(engine));
                     engineType = engineTypes[engine-1];
                     break;
@@ -349,8 +393,12 @@ public class MenuService {
             System.out.println("1. Color Menu");
             System.out.println("2. Car Body Type Menu");
             System.out.println("3. Add Components");
-            System.out.println("4. Close");
+            System.out.println("4. Back Car Menu");
             a = UserDataService.getInt("\nPlease enter menu number : ");
+            if (a < 1 || a > 4)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
             switch (a)
             {
                 case 1:
@@ -379,6 +427,10 @@ public class MenuService {
                         System.out.println("2. HatchBack");
                         System.out.println("3. Combi");
                         body = UserDataService.getInt("Please enter menu number : ");
+                        if (body < 1 || body > 3)
+                        {
+                            System.err.println("PLEASE INSERT NUMBER FROM MENU");
+                        }
                     }while (!Arrays.asList(1,2,3).contains(body));
                     carBodyType = carBodyTypes[body-1];
                     break;
@@ -429,7 +481,7 @@ public class MenuService {
             System.out.println("1. Model Input");
             System.out.println("2. Size Input");
             System.out.println("3. Tyre Type Menu");
-            System.out.println("4. Close");
+            System.out.println("4. Back Car Menu");
             a = UserDataService.getInt("\nPlease enter menu number : ");
             switch (a)
             {
@@ -451,6 +503,10 @@ public class MenuService {
                         System.out.println("1. Winter");
                         System.out.println("2. Summer");
                         tyreType = UserDataService.getInt("\nPlease enter menu number : ");
+                        if (tyreType < 1 || tyreType > 2)
+                        {
+                            System.err.println("PLEASE INSERT NUMBER FROM MENU");
+                        }
                     }while (!Arrays.asList(1,2).contains(tyreType));
 
                     TyreType[] tyreTypes = TyreType.values();
