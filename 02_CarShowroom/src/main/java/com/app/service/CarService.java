@@ -77,6 +77,8 @@ public class CarService
                         )
                 );
     }
+
+    //this method returns map with model as a key and the most expensive car from all cars with this model as a value.
     Map<String, Optional<Car>> modelCarMap()
     {
         return cars
@@ -109,7 +111,7 @@ public class CarService
                 .collect(Collectors.summarizingDouble(i -> i));
         System.out.println("max mileage : " + issM.getMax());
         System.out.println("min mileage : " + issM.getMin());
-        System.out.println("avg mileage : " + Math.round(issM.getAverage()));
+        System.out.println("avg mileage : " + Math.round(issM.getAverage() * 100) / 100);
 
         BigDecimalSummaryStatistics issP = cars
                 .stream()

@@ -33,16 +33,20 @@ public class MenuService
                 System.out.println("11. Close");
 
                 int option = userDataService.getInt("\nPlease enter menu number : ");
+                if (option < 1 || option > 11)
+                {
+                    System.err.println("PLEASE INSERT NUMBER FROM MENU");
+                }
+
                 switch (option)
                 {
                     case 1:
-                        option1();
-                        // insertCar();
+                        insertCar();
                         break;
 
 
                     case 2:
-                        carService.toString();
+                        carService.getCars().stream().forEach(System.out::println);
                         break;
 
 
@@ -107,7 +111,6 @@ public class MenuService
         }
     }
 
-    private void option1() {}
     public List<Car> sortedCars()
     {
         int choice1;
@@ -117,7 +120,11 @@ public class MenuService
             System.out.println("2. Sort by model");
             System.out.println("3. Sort by color");
             System.out.println("4. Sort by mileage");
-            choice1 = userDataService.getInt("Please enter menu number : ");
+            choice1 = userDataService.getInt("\nPlease enter menu number : ");
+            if (choice1 < 1 || choice1 > 4)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
         }while (!Arrays.asList(1,2,3,4).contains(choice1));
 
         int choice2;
@@ -125,17 +132,21 @@ public class MenuService
 
             System.out.println("1. Sort ascending");
             System.out.println("2. Sort descending");
-            choice2 = userDataService.getInt("Please enter menu number : ");
+            choice2 = userDataService.getInt("\nPlease enter menu number : ");
+            if (choice2 < 1 || choice2 > 2)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
         }while (!Arrays.asList(1,2).contains(choice2));
 
         boolean type;
         if (choice2 == 1)
         {
-            type = true;
+            type = false;
         }
         else
         {
-            type = false;
+            type = true;
         }
         SortType sortType = sortTypes[choice1-1];
 
@@ -161,6 +172,11 @@ public class MenuService
             System.out.println("8. Back To Main Menu");
 
             option = userDataService.getInt("\nPlease enter menu number : ");
+
+            if (option < 1 || option > 8)
+            {
+                System.err.println("PLEASE INSERT NUMBER FROM MENU");
+            }
             switch (option) {
                 case 1:
                     do {
@@ -178,31 +194,35 @@ public class MenuService
                         System.out.println("3. Silver");
                         System.out.println("4. Blue");
                         c = userDataService.getInt("\nPlease enter menu number : ");
+                        if (c < 1 || c > 4)
+                        {
+                            System.err.println("PLEASE INSERT NUMBER FROM MENU");
+                        }
                     } while (!Arrays.asList(1, 2, 3, 4).contains(c));
                     color = colors[c - 1];
                     break;
 
                 case 3:
                     do {
-                        price =  UserDataService.getDouble("\nPlease input car price. Price must be bigger than 0");
+                        price =  UserDataService.getDouble("\nPlease input car price");
                     } while (price < 0);
                     break;
 
                 case 4:
                     do {
-                        mileage = UserDataService.getInt("\nPlease input car mileage. Mileage must be bigger or equal 0");
+                        mileage = UserDataService.getInt("\nPlease input car mileage. Mileage must be greater or equal 0");
                     } while (mileage <= 0);
                     break;
 
                 case 5:
 
-                    System.out.println("\nPlease input car components, if you're done please enter '0'. Equipment pattern : 'A-Z'");
+                    System.out.println("\nPlease input car components, if you're done please insert '0'. Equipment pattern : 'A-Z'");
                     String eq;
                     do {
-                        eq = userDataService.getString("Input component : ");
+                        eq = userDataService.getString("Insert component : ");
                         if (!eq.matches("[A-Z]+") && !eq.equals("0"))
                         {
-                            System.out.println("\nTry again ! Component pattern : 'A-Z'");
+                            System.err.println("\nTRY AGAIN ! COMPONENT PATTERN: 'A-Z'");
                         } else if (eq.matches("[A-Z]+"))
                         {
                             equipment.add(eq);
@@ -237,6 +257,7 @@ public class MenuService
 
 
     }
+
     public List<Car> getCarsFromPriceRange()
     {
         int min;
@@ -244,11 +265,15 @@ public class MenuService
         do {
             min = userDataService.getInt("\nPlease enter min price : ");
             max = userDataService.getInt("\nPlease enter max price : ");
+            if (min >= max)
+            {
+                System.err.println("MIN VALUE SHOULD BE GREATER THAN MAX VALUE");
+            }
         } while (min >= max || min <= 0);
         List<Car> carsFromPriceRange = carService.carsWithPriceInRange(new BigDecimal(min), new BigDecimal(max));
         if (carsFromPriceRange.size() == 0)
         {
-            System.out.println("There is no cars from this price range");
+            System.err.println("THERE IS NO CAR FROM THIS PRICE RANGE");
             return null;
         }
         else{
