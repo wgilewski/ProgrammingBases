@@ -13,31 +13,26 @@ import java.util.Map;
 
 @Data
 @NoArgsConstructor
-public class SeanceValidationException extends CustomException
-{
+public class SeanceValidationException extends CustomException {
 
     private String field;
     private LocalDateTime localDateTime;
 
 
-    public SeanceValidationException(String field, LocalDateTime localDateTime)
-    {
+    public SeanceValidationException(String field, LocalDateTime localDateTime) {
         this.field = field;
         this.localDateTime = localDateTime;
 
-        if (!getMap().isEmpty())
-        {
-            for (Map.Entry<String, List<String>> m : getMap().entrySet())
-            {
+        if (!getMap().isEmpty()) {
+            for (Map.Entry<String, List<String>> m : getMap().entrySet()) {
                 m.getValue().add(field + " " + localDateTime);
             }
-        }
-        else getMap().put("SEANCE VALIDATION",new ArrayList<>(Arrays.asList(field + " " + localDateTime)));
+        } else getMap().put("SEANCE VALIDATION", new ArrayList<>(Arrays.asList(field + " " + localDateTime)));
     }
 
     @Override
     public String getExceptionMessage() {
-        return "SEANCE VALIDATION - " + field +  ", " + " " + localDateTime;
+        return "SEANCE VALIDATION - " + field + ", " + " " + localDateTime;
     }
 
 }

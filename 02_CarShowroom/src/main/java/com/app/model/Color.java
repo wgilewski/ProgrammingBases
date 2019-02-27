@@ -1,6 +1,5 @@
 package com.app.model;
 
-public enum Color
-{
-    WHITE,BLACK,SILVER,BLUE
+public enum Color {
+    WHITE, BLACK, SILVER, BLUE
 }

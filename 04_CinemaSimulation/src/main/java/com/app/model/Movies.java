@@ -13,7 +13,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Movies
-{
+public class Movies {
     private Set<Movie> movies = new HashSet<>();
 }

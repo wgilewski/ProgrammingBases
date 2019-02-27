@@ -12,7 +12,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cars
-{
+public class Cars {
     private Set<Car> cars = new HashSet<>();
 }

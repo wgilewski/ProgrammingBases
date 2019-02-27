@@ -12,7 +12,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Builder
-public class Seances
-{
+public class Seances {
     private Set<Seance> seances = new HashSet<>();
 }

@@ -8,17 +8,15 @@ import com.app.model.Color;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class GenerateData
-{
-    public static void generate()
-    {
+public class GenerateData {
+    public static void generate() {
         Set<Car> carSet = new HashSet<>(Arrays.asList(
                 Car.builder()
                         .model("AUDI")
                         .price(new BigDecimal(129000))
                         .mileage(120)
                         .color(Color.BLACK)
-                        .equipment(new HashSet<>(Arrays.asList("AAA","BBB","DDD","EEE","FFF","GGG")))
+                        .equipment(new HashSet<>(Arrays.asList("AAA", "BBB", "DDD", "EEE", "FFF", "GGG")))
                         .build(),
 
                 Car.builder()
@@ -26,7 +24,7 @@ public class GenerateData
                         .price(new BigDecimal(1229000))
                         .mileage(0)
                         .color(Color.BLACK)
-                        .equipment(new HashSet<>(Arrays.asList("AAA","BBB")))
+                        .equipment(new HashSet<>(Arrays.asList("AAA", "BBB")))
                         .build(),
 
                 Car.builder()
@@ -34,7 +32,7 @@ public class GenerateData
                         .price(new BigDecimal(987000))
                         .mileage(10)
                         .color(Color.BLACK)
-                        .equipment(new HashSet<>(Arrays.asList("AAA","BBB","CCC","DDD","EEE","FFF","GGG")))
+                        .equipment(new HashSet<>(Arrays.asList("AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG")))
                         .build(),
 
                 Car.builder()
@@ -42,7 +40,7 @@ public class GenerateData
                         .price(new BigDecimal(229000))
                         .mileage(12)
                         .color(Color.SILVER)
-                        .equipment(new HashSet<>(Arrays.asList("AAA","EEE","FFF","GGG")))
+                        .equipment(new HashSet<>(Arrays.asList("AAA", "EEE", "FFF", "GGG")))
                         .build(),
 
                 Car.builder()
@@ -50,7 +48,7 @@ public class GenerateData
                         .price(new BigDecimal(419000))
                         .mileage(1120)
                         .color(Color.BLACK)
-                        .equipment(new HashSet<>(Arrays.asList("AAA","BBB","FFF","GGG")))
+                        .equipment(new HashSet<>(Arrays.asList("AAA", "BBB", "FFF", "GGG")))
                         .build(),
 
                 Car.builder()
@@ -58,7 +56,7 @@ public class GenerateData
                         .price(new BigDecimal(890000))
                         .mileage(0)
                         .color(Color.BLUE)
-                        .equipment(new HashSet<>(Arrays.asList("AAA","BBB","CCC","DDD","EEE")))
+                        .equipment(new HashSet<>(Arrays.asList("AAA", "BBB", "CCC", "DDD", "EEE")))
                         .build(),
 
                 Car.builder()
@@ -66,7 +64,7 @@ public class GenerateData
                         .price(new BigDecimal(318000))
                         .mileage(120)
                         .color(Color.WHITE)
-                        .equipment(new HashSet<>(Arrays.asList("BBB","CCC","DDD","EEE","FFF","GGG")))
+                        .equipment(new HashSet<>(Arrays.asList("BBB", "CCC", "DDD", "EEE", "FFF", "GGG")))
                         .build()
         ));
 

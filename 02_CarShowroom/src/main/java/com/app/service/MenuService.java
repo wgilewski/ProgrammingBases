@@ -9,15 +9,12 @@ import com.app.service.enums.SortType;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class MenuService
-{
-    private final UserDataService userDataService = new UserDataService();
+public class MenuService {
+
     private final CarService carService = new CarService();
 
-    public void mainMenu()
-    {
-        while (true)
-        {
+    public void mainMenu() {
+        while (true) {
             try {
                 System.out.println("\n<----Menu---->");
                 System.out.println("1. New car");
@@ -32,14 +29,12 @@ public class MenuService
                 System.out.println("10. Back to original car list");
                 System.out.println("11. Close");
 
-                int option = userDataService.getInt("\nPlease enter menu number : ");
-                if (option < 1 || option > 11)
-                {
+                int option = UserDataService.getInt("\nPlease enter menu number : ");
+                if (option < 1 || option > 11) {
                     System.err.println("PLEASE INSERT NUMBER FROM MENU");
                 }
 
-                switch (option)
-                {
+                switch (option) {
                     case 1:
                         insertCar();
                         break;
@@ -58,7 +53,7 @@ public class MenuService
                     case 4:
                         int mileage1;
                         do {
-                            mileage1 = userDataService.getInt("\nPlease enter mileage : ");
+                            mileage1 = UserDataService.getInt("\nPlease enter mileage : ");
                         } while (mileage1 <= 0);
                         List<Car> carsWithMileageGreaterThan = carService.carsWithMileageGreaterThan(mileage1);
                         carsWithMileageGreaterThan.stream().forEach(System.out::println);
@@ -102,7 +97,7 @@ public class MenuService
 
 
                     case 11:
-                        userDataService.close();
+                        UserDataService.close();
                         return;
                 }
             } catch (MyException e) {
@@ -111,8 +106,7 @@ public class MenuService
         }
     }
 
-    public List<Car> sortedCars()
-    {
+    public List<Car> sortedCars() {
         int choice1;
         SortType[] sortTypes = SortType.values();
         do {
@@ -120,40 +114,35 @@ public class MenuService
             System.out.println("2. Sort by model");
             System.out.println("3. Sort by color");
             System.out.println("4. Sort by mileage");
-            choice1 = userDataService.getInt("\nPlease enter menu number : ");
-            if (choice1 < 1 || choice1 > 4)
-            {
+            choice1 = UserDataService.getInt("\nPlease enter menu number : ");
+            if (choice1 < 1 || choice1 > 4) {
                 System.err.println("PLEASE INSERT NUMBER FROM MENU");
             }
-        }while (!Arrays.asList(1,2,3,4).contains(choice1));
+        } while (!Arrays.asList(1, 2, 3, 4).contains(choice1));
 
         int choice2;
         do {
 
             System.out.println("1. Sort ascending");
             System.out.println("2. Sort descending");
-            choice2 = userDataService.getInt("\nPlease enter menu number : ");
-            if (choice2 < 1 || choice2 > 2)
-            {
+            choice2 = UserDataService.getInt("\nPlease enter menu number : ");
+            if (choice2 < 1 || choice2 > 2) {
                 System.err.println("PLEASE INSERT NUMBER FROM MENU");
             }
-        }while (!Arrays.asList(1,2).contains(choice2));
+        } while (!Arrays.asList(1, 2).contains(choice2));
 
         boolean type;
-        if (choice2 == 1)
-        {
+        if (choice2 == 1) {
             type = false;
-        }
-        else
-        {
+        } else {
             type = true;
         }
-        SortType sortType = sortTypes[choice1-1];
+        SortType sortType = sortTypes[choice1 - 1];
 
-        return carService.sortBy(sortType,type);
+        return carService.sortBy(sortType, type);
     }
-    public void insertCar()
-    {
+
+    public void insertCar() {
         String model = "";
         Color color = null;
         double price = 0;
@@ -171,16 +160,15 @@ public class MenuService
             System.out.println("7. Save Car");
             System.out.println("8. Back To Main Menu");
 
-            option = userDataService.getInt("\nPlease enter menu number : ");
+            option = UserDataService.getInt("\nPlease enter menu number : ");
 
-            if (option < 1 || option > 8)
-            {
+            if (option < 1 || option > 8) {
                 System.err.println("PLEASE INSERT NUMBER FROM MENU");
             }
             switch (option) {
                 case 1:
                     do {
-                        model = userDataService.getString("\nPlease input car model. Pattern : A-Z");
+                        model = UserDataService.getString("\nPlease input car model. Pattern : A-Z");
                     } while (!model.matches("[A-Z ]+"));
                     break;
 
@@ -193,9 +181,8 @@ public class MenuService
                         System.out.println("2. Black");
                         System.out.println("3. Silver");
                         System.out.println("4. Blue");
-                        c = userDataService.getInt("\nPlease enter menu number : ");
-                        if (c < 1 || c > 4)
-                        {
+                        c = UserDataService.getInt("\nPlease enter menu number : ");
+                        if (c < 1 || c > 4) {
                             System.err.println("PLEASE INSERT NUMBER FROM MENU");
                         }
                     } while (!Arrays.asList(1, 2, 3, 4).contains(c));
@@ -204,7 +191,7 @@ public class MenuService
 
                 case 3:
                     do {
-                        price =  UserDataService.getDouble("\nPlease input car price");
+                        price = UserDataService.getDouble("\nPlease input car price");
                     } while (price < 0);
                     break;
 
@@ -219,12 +206,10 @@ public class MenuService
                     System.out.println("\nPlease input car components, if you're done please insert '0'. Equipment pattern : 'A-Z'");
                     String eq;
                     do {
-                        eq = userDataService.getString("Insert component : ");
-                        if (!eq.matches("[A-Z]+") && !eq.equals("0"))
-                        {
+                        eq = UserDataService.getString("Insert component : ");
+                        if (!eq.matches("[A-Z]+") && !eq.equals("0")) {
                             System.err.println("\nTRY AGAIN ! COMPONENT PATTERN: 'A-Z'");
-                        } else if (eq.matches("[A-Z]+"))
-                        {
+                        } else if (eq.matches("[A-Z]+")) {
                             equipment.add(eq);
                             System.out.println("If you're done please enter '0'");
                         }
@@ -258,25 +243,21 @@ public class MenuService
 
     }
 
-    public List<Car> getCarsFromPriceRange()
-    {
+    public List<Car> getCarsFromPriceRange() {
         int min;
         int max;
         do {
-            min = userDataService.getInt("\nPlease enter min price : ");
-            max = userDataService.getInt("\nPlease enter max price : ");
-            if (min >= max)
-            {
+            min = UserDataService.getInt("\nPlease enter min price : ");
+            max = UserDataService.getInt("\nPlease enter max price : ");
+            if (min >= max) {
                 System.err.println("MIN VALUE SHOULD BE GREATER THAN MAX VALUE");
             }
         } while (min >= max || min <= 0);
         List<Car> carsFromPriceRange = carService.carsWithPriceInRange(new BigDecimal(min), new BigDecimal(max));
-        if (carsFromPriceRange.size() == 0)
-        {
+        if (carsFromPriceRange.size() == 0) {
             System.err.println("THERE IS NO CAR FROM THIS PRICE RANGE");
             return null;
-        }
-        else{
+        } else {
             return carsFromPriceRange;
         }
     }

@@ -1,6 +1,5 @@
 package com.app.model;
 
-public interface IMovie
-{
+public interface IMovie {
     Movie getMovie();
 }

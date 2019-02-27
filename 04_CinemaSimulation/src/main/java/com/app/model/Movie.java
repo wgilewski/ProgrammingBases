@@ -17,8 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 
-public class Movie
-{
+public class Movie {
     private String type;
     private String title;
     private String directorName;
@@ -30,12 +29,9 @@ public class Movie
     }
 
     public void setTitle(String title) {
-        if (title.matches("[A-Z ]+"))
-        {
+        if (title.matches("[A-Z ]+")) {
             this.title = title;
-        }
-        else
-        {
+        } else {
             throw new MovieValidationException("TITLE", LocalDateTime.now());
         }
 
@@ -43,12 +39,9 @@ public class Movie
 
     public void setDirectorName(String directorName) {
 
-        if (directorName.matches("[A-Z]+ [a-z]+"))
-        {
+        if (directorName.matches("[A-Z]+ [a-z]+")) {
             this.directorName = directorName;
-        }
-        else
-        {
+        } else {
             throw new MovieValidationException("DIRECTOR NAME", LocalDateTime.now());
         }
     }

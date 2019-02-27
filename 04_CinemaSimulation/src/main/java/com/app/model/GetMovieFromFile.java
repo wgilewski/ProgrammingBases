@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GetMovieFromFile implements IMovie
-{
+public class GetMovieFromFile implements IMovie {
     private Movies movies;
 
-    public GetMovieFromFile(String moviesFile)
-    {
+    public GetMovieFromFile(String moviesFile) {
         MoviesJsonConverter moviesJsonConverter = new MoviesJsonConverter(moviesFile);
         movies = moviesJsonConverter.fromJson().get();
     }
@@ -24,8 +22,7 @@ public class GetMovieFromFile implements IMovie
     }
 
     @Override
-    public Movie getMovie()
-    {
+    public Movie getMovie() {
         Random rnd = new Random();
         int max = movies.getMovies().size();
         int randomInt = rnd.nextInt(max);

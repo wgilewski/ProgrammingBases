@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class GetProperties
-{
+public class GetProperties {
     String result = "";
     InputStream inputStream;
 
@@ -36,6 +35,7 @@ public class GetProperties
         }
         return result;
     }
+
     public String getSeanceValues() throws IOException {
 
         try {
@@ -59,7 +59,7 @@ public class GetProperties
             String roomMax = prop.getProperty("ROOM_MAX");
             String roomMin = prop.getProperty("ROOM_MIN");
 
-            result = priceMax +","+ priceMin+","+duration1+","+duration2+","+duration3+","+roomMax+","+roomMin;
+            result = priceMax + "," + priceMin + "," + duration1 + "," + duration2 + "," + duration3 + "," + roomMax + "," + roomMin;
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -67,6 +67,7 @@ public class GetProperties
         }
         return result;
     }
+
     public String getRepertoireValues() throws IOException {
 
         try {
@@ -88,7 +89,7 @@ public class GetProperties
             String minutesMin = prop.getProperty("MIN_MIN");
 
 
-            result = houreMax +","+ houreMin+","+minutesMax+","+minutesMin;
+            result = houreMax + "," + houreMin + "," + minutesMax + "," + minutesMin;
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {

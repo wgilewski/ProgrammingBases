@@ -13,13 +13,11 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomException extends RuntimeException
-{
+public class CustomException extends RuntimeException {
     private Map<String, List<String>> map = new HashMap<>();
 
-    public String getExceptionMessage()
-    {
-       return "";
+    public String getExceptionMessage() {
+        return "";
     }
 
 }

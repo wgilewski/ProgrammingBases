@@ -1,7 +1,6 @@
 package com.app.model;
 
-public enum TyreType
-{
-    WINTER,SUMMER
+public enum TyreType {
+    WINTER, SUMMER
 
 }

@@ -12,8 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 
-public class Engine
-{
+public class Engine {
     private EngineType type;
     private double power;
 }

@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-public class Wheel
-{
+public class Wheel {
     private String model;
     private int size;
     private TyreType type;

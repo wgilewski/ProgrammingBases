@@ -12,8 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 
-public class Car
-{
+public class Car {
     private String model;
     private BigDecimal price;
     private int mileage;

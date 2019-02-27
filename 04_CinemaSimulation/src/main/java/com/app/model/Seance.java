@@ -19,12 +19,11 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 
-public class Seance
-{
+public class Seance {
     final static String[] properties = getProperties().split(",");
     final static BigDecimal PRICE_MAX = new BigDecimal(properties[0]);
     final static BigDecimal PRICE_MIN = new BigDecimal(properties[1]);
-    final static List<Integer> DURATIONS = new ArrayList<>(Arrays.asList(Integer.valueOf(properties[2]),Integer.valueOf(properties[3]),Integer.valueOf(properties[4])));
+    final static List<Integer> DURATIONS = new ArrayList<>(Arrays.asList(Integer.valueOf(properties[2]), Integer.valueOf(properties[3]), Integer.valueOf(properties[4])));
     final static int ROOM_MAX = Integer.valueOf(properties[5]);
     final static int ROOM_MIN = Integer.valueOf(properties[6]);
 
@@ -42,48 +41,39 @@ public class Seance
         setRoomNumber(roomNumber);
     }
 
-    public void setPrice(BigDecimal price)
-    {
-        if (price.intValue() >= PRICE_MIN.intValue() && price.intValue() <= PRICE_MAX.intValue() )
-        {
+    public void setPrice(BigDecimal price) {
+        if (price.intValue() >= PRICE_MIN.intValue() && price.intValue() <= PRICE_MAX.intValue()) {
             this.price = price;
-        }
-        else
-        {
+        } else {
             throw new SeanceValidationException("PRICE", LocalDateTime.now());
         }
     }
-    public void setMovieDuration(int movieDuration)
-    {
 
-        if (DURATIONS.contains(movieDuration))
-        {
+    public void setMovieDuration(int movieDuration) {
+
+        if (DURATIONS.contains(movieDuration)) {
             this.movieDuration = movieDuration;
-        }
-        else
-        {
+        } else {
             throw new SeanceValidationException("MOVIE DURATION", LocalDateTime.now());
 
         }
     }
-    public void setRoomNumber(int roomNumber)
-    {
-        if (roomNumber >= ROOM_MIN && roomNumber <= ROOM_MAX)
-        {
+
+    public void setRoomNumber(int roomNumber) {
+        if (roomNumber >= ROOM_MIN && roomNumber <= ROOM_MAX) {
             this.roomNumber = roomNumber;
-        }
-        else
-        {
+        } else {
             throw new SeanceValidationException("ROOM NUMBER", LocalDateTime.now());
 
         }
     }
-    public static void saveSeances(String seancesFile, Set<Seance> seancesSet)
-    {
+
+    public static void saveSeances(String seancesFile, Set<Seance> seancesSet) {
         SeancesJsonConverter seancesJsonConverter = new SeancesJsonConverter(seancesFile);
         Seances seances = Seances.builder().seances(seancesSet).build();
         seancesJsonConverter.toJson(seances);
     }
+
     private static String getProperties() {
         GetProperties getProperties = new GetProperties();
         try {

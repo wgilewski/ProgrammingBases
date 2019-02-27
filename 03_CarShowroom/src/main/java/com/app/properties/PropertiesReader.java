@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertiesReader
-{
+public class PropertiesReader {
     int result = 0;
     InputStream inputStream;
 
@@ -14,7 +13,7 @@ public class PropertiesReader
 
         try {
             Properties prop = new Properties();
-            String propFileName = producer +".properties";
+            String propFileName = producer + ".properties";
 
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 

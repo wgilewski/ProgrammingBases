@@ -12,8 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 
-public class CarBody
-{
+public class CarBody {
     private CarBodyColor color;
     private CarBodyType type;
     private Set<String> components;

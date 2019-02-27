@@ -1,6 +1,5 @@
 package com.app.model;
 
-public enum EngineType
-{
-    DIESEL,GASOLINE,LPG
+public enum EngineType {
+    DIESEL, GASOLINE, LPG
 }

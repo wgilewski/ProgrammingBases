@@ -13,8 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Car
-{
+public class Car {
     private String model;
     private Color color;
     private BigDecimal price;

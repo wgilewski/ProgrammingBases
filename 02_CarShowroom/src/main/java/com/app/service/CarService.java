@@ -23,16 +23,13 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class CarService
-{
+public class CarService {
     private Cars carsClass = new CarStoreJsonConverter("cars.json").fromJson().get();
     private Set<Car> cars = new HashSet<>(carsClass.getCars());
 
-    List<Car> sortBy(SortType sortType, boolean descending)
-    {
+    List<Car> sortBy(SortType sortType, boolean descending) {
         Stream<Car> carStream = null;
-        switch (sortType)
-        {
+        switch (sortType) {
             case MODEL:
                 carStream = cars
                         .stream()
@@ -60,27 +57,26 @@ public class CarService
         }
         return cars;
     }
-    List<Car> carsWithMileageGreaterThan(int mileage)
-    {
+
+    List<Car> carsWithMileageGreaterThan(int mileage) {
         return cars
                 .stream()
                 .filter(car -> car.getMileage() > mileage)
                 .collect(Collectors.toList());
     }
-    Map<Color, Long> groupByColor()
-    {
+
+    Map<Color, Long> groupByColor() {
         return cars
                 .stream()
                 .collect(Collectors.groupingBy(
-                            Car::getColor,
-                            Collectors.counting()
+                        Car::getColor,
+                        Collectors.counting()
                         )
                 );
     }
 
     //this method returns map with model as a key and the most expensive car from all cars with this model as a value.
-    Map<String, Optional<Car>> modelCarMap()
-    {
+    Map<String, Optional<Car>> modelCarMap() {
         return cars
                 .stream()
                 .collect(Collectors.groupingBy(Car::getModel, Collectors.maxBy(Comparator.comparing(Car::getPrice))))
@@ -88,23 +84,23 @@ public class CarService
                 .stream()
                 .sorted(Comparator.comparing(Map.Entry::getKey))
                 .collect(Collectors.toMap(
-                            Map.Entry::getKey,
-                            Map.Entry::getValue,
-                            (v1, v2) -> v1,
-                            LinkedHashMap::new
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (v1, v2) -> v1,
+                        LinkedHashMap::new
                         )
                 );
     }
-    List<Car> carsWithPriceInRange(BigDecimal a, BigDecimal b)
-    {
+
+    List<Car> carsWithPriceInRange(BigDecimal a, BigDecimal b) {
         return cars
                 .stream()
                 .filter(car -> car.getPrice().doubleValue() > a.doubleValue() && car.getPrice().doubleValue() < b.doubleValue())
                 .sorted(Comparator.comparing(Car::getModel))
                 .collect(Collectors.toList());
     }
-    void statistics()
-    {
+
+    void statistics() {
         DoubleSummaryStatistics issM = cars
                 .stream()
                 .map(car -> car.getMileage())
@@ -122,25 +118,25 @@ public class CarService
         System.out.println("min price : " + issP.getMin());
         System.out.println("avg price : " + issP.getAverage().round(MathContext.DECIMAL32));
     }
-    Optional<Car> theMostExpensiveCar()
-    {
+
+    Optional<Car> theMostExpensiveCar() {
         return cars
                 .stream()
                 .max(Comparator.comparing(Car::getPrice));
     }
-    void insertCar(Car car)
-    {
-        if (!car.getModel().matches("[A-Z ]+") || car.getMileage() <= 0 || car.getPrice().compareTo(BigDecimal.ZERO) <= 0 || car.getColor() == null || car.getEquipment().size() == 0)
-        {
+
+    void insertCar(Car car) {
+        if (!car.getModel().matches("[A-Z ]+") || car.getMileage() <= 0 || car.getPrice().compareTo(BigDecimal.ZERO) <= 0 || car.getColor() == null || car.getEquipment().size() == 0) {
             throw new MyException("INSERT CAR - CAR OBJECT IS NULL");
         }
         cars.add(car);
     }
-    void backToOriginalCarList()
-    {
+
+    void backToOriginalCarList() {
         cars.clear();
         cars.addAll(carsClass.getCars());
     }
+
     @Override
     public String toString() {
         return cars
