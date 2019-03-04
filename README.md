@@ -1,1 +1,1 @@
-console applications. Java 8, Json
+Console applications. Java 8, Json
