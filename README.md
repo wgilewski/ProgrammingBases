@@ -1,2 +1,1 @@
-Programming bases console applications. 
-Json, Java 8
+console applications. Java 8, Json
