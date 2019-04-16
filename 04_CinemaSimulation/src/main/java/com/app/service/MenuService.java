@@ -82,7 +82,6 @@ public class MenuService {
 
                     case 6:
 
-                        System.out.println("sssssss");
                         try {
 
                             Seance seance = new Seance(movie, new BigDecimal(price), duration, roomNumber);
